@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: "API"
+  version: "1.0.0"
+  contact:
+    name: Contact Name
+    email: contact@example.com
+    url: https://example.com/
+tags:
+  - name: Metadata
+    description: Metadata related requests
+paths:
+  /:
+    get:
+      operationId: getMetadata
+      summary: Get metadata from the root of the API
+      tags: [ 'Metadata' ]
+      parameters:
+        - $ref: '#/components/parameters/pagination'
+
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+
+    offsetParam:      
+      name: offset
+      in: query
+      description: Number of items to skip before returning the results.
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+        default: 0
+
+    limitParam:       
+      name: limit
+      in: query
+      description: Maximum number of items to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 100
+        default: 20
+        limitParam:
+
+    pageParam:     
+      name: page
+      in: query
+      description: Number of the current page.
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1    
